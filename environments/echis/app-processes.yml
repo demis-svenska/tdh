@@ -117,7 +117,7 @@ pillows:
       num_processes: 3
       processor_chunk_size: 0
     case-pillow:
-      num_processes: 30
+      num_processes: 20
       processor_chunk_size: 10
     LedgerToElasticsearchPillow:
       num_processes: 5
