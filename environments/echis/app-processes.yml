@@ -119,11 +119,10 @@ pillows:
     case-pillow:
       num_processes: 30
       processor_chunk_size: 10
-      #      exclude_ucrs: ["ucr_fmoh-echis_HEW_Sync_Data_Source_5962acc0","ucr_fmoh-echis_HEW_Sync_Data_Source_1_337b7a26",]
     LedgerToElasticsearchPillow:
       num_processes: 5
       processor_chunk_size: 0
   echis_server7:
     xform-pillow:
-      num_processes: 30
+      num_processes: 20
       processor_chunk_size: 10
