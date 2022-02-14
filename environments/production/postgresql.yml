@@ -1,4 +1,4 @@
-DEFAULT_POSTGRESQL_HOST: rds_pgsynclog0
+DEFAULT_POSTGRESQL_HOST: rds_pgsynclog1
 
 postgres_override:
   allow_dump_from_pgstandby: yes
@@ -41,6 +41,8 @@ dbs:
   main:
     host: rds_pgmain0
     pgbouncer_endpoint: pgmain_nlb
+    pgbouncer_pool_size: 20
+    pgbouncer_reserve_pool_size: 6
     pgbouncer_hosts:
       - pgbouncer5
       - pgbouncer6
@@ -60,6 +62,8 @@ dbs:
   ucr:
     host: rds_pgucr0
     pgbouncer_endpoint: pgucr_nlb
+    pgbouncer_pool_size: 10
+    pgbouncer_reserve_pool_size: 2
     pgbouncer_hosts:
       - pgbouncer5
       - pgbouncer6
@@ -68,7 +72,7 @@ dbs:
       - pgbouncer9
     query_stats: True
   synclogs:
-    host: rds_pgsynclog0
+    host: rds_pgsynclog1
     pgbouncer_endpoint: pgsynclogs_nlb
     pgbouncer_hosts:
       - pgbouncer5
@@ -79,7 +83,8 @@ dbs:
   auditcare:
     host: rds_pgauditcare0
     pgbouncer_endpoint: pgmain_nlb
-    pgbouncer_pool_size: 8
+    pgbouncer_pool_size: 6
+    pgbouncer_reserve_pool_size: 2
     pgbouncer_hosts:
       - pgbouncer5
       - pgbouncer6
