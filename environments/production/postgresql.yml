@@ -39,10 +39,10 @@ pg_repack:
 
 dbs:
   main:
-    host: rds_pgmain0
+    host: rds_pgmain1
     pgbouncer_endpoint: pgmain_nlb
-    pgbouncer_pool_size: 20
-    pgbouncer_reserve_pool_size: 6
+    pgbouncer_pool_size: 36
+    pgbouncer_reserve_pool_size: 0
     pgbouncer_hosts:
       - pgbouncer5
       - pgbouncer6
@@ -50,7 +50,7 @@ dbs:
       - pgbouncer8
       - pgbouncer9
   formplayer:
-    host: rds_pgformplayer0
+    host: rds_pgformplayer1
     pgbouncer_endpoint: pgformplayer_nlb
     pgbouncer_pool_size: 100
     pgbouncer_hosts:
