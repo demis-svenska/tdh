@@ -89,6 +89,8 @@ localsettings:
     - 172.19.4.55
     - 172.19.4.56
     - 172.19.4.57
+    - 172.19.4.59
+    - 172.19.4.60
   SENTRY_ORGANIZATION_SLUG: 'org slug'
   SENTRY_PROJECT_SLUG: 'project slug'
   SENTRY_REPOSITORY: 'fmoh'
