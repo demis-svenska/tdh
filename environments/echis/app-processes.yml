@@ -29,7 +29,7 @@ celery_processes:
       pooling: gevent
       concurrency: 5    
     linked_domain_queue:
-      concurrency: 1
+      concurrency: 3
     export_download_queue:
       concurrency: 10
     email_queue:
@@ -48,10 +48,13 @@ celery_processes:
       pooling: gevent
       concurrency: 5
     celery_periodic:
-      concurrency: 5
-    reminder_case_update_queue:
       pooling: gevent
       concurrency: 5
+      num_workers: 5
+    reminder_case_update_queue:
+      pooling: gevent
+      concurrency: 10
+      num_workers: 5
     reminder_queue:
       pooling: gevent
       concurrency: 5
