@@ -77,7 +77,6 @@ celery_processes:
   echis_server5:
     saved_exports_queue:
       concurrency: 15
-      optimize: True
 pillows:
   echis_server5:
     CacheInvalidatePillow:
