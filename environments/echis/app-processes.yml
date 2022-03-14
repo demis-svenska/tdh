@@ -31,7 +31,7 @@ celery_processes:
     linked_domain_queue:
       concurrency: 3
     export_download_queue:
-      concurrency: 10
+      concurrency: 15
     email_queue:
       pooling: gevent
       concurrency: 20
