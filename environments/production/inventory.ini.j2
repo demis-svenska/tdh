@@ -36,7 +36,6 @@ web_m_c
 hq_webworkers
 mobile_webworkers
 
-{{ __pgbouncer3__ }} pgbouncer_processes=2
 {{ __pgbouncer_a1__ }} pgbouncer_processes=2
 {{ __pgbouncer5__ }} pgbouncer_processes=2
 {{ __pgbouncer6__ }} pgbouncer_processes=2
@@ -89,12 +88,10 @@ rds_pgsynclog1
 rds_pgauditcare0
 
 [postgresql:children]
-pgbouncer3
 pgbouncer_a1
 remote_postgresql
 
 [pgbouncer:children]
-pgbouncer3
 pgbouncer_a1
 pgbouncer5
 pgbouncer6
@@ -116,8 +113,6 @@ pgsynclogs_nlb
 pgshard_nlb
 couch_alb
 
-{{ __rabbit2__ }}
-{{ __rabbit5__ }}
 {{ __rabbit6__ }}
 {{ __rabbit7__ }}
 
@@ -134,6 +129,8 @@ swap_size=2G
 
 [zookeeper:children]
 kafka1
+kafka4
+kafka5
 
 [kafka:children]
 kafka1
@@ -181,7 +178,6 @@ use_monit_for_formplayer=true
 
 [formplayer_with_monit:children]
 formplayer_c014
-formplayer_c023
 
 [shared_efs_client_host:children]
 celery
@@ -265,6 +261,7 @@ couch_alb
 control2
 
 {{ __djangomanage2__ }}
+{{ __djangomanage_a0__ }}
 
 [django_manage:children]
-djangomanage2
+djangomanage_a0
