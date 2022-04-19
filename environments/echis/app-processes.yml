@@ -30,8 +30,6 @@ celery_processes:
       concurrency: 5    
     linked_domain_queue:
       concurrency: 3
-    export_download_queue:
-      concurrency: 15
     email_queue:
       pooling: gevent
       concurrency: 20
@@ -76,6 +74,8 @@ celery_processes:
       concurrency: 2
   echis_server5:
     saved_exports_queue:
+      concurrency: 15
+    export_download_queue:
       concurrency: 15
 pillows:
   echis_server5:
