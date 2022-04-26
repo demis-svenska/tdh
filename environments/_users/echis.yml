@@ -1,7 +1,9 @@
 dev_users:
   present:
     - administrator
+    - dmac
     - ansible
+    - dpc
   absent:
     - echis_melese
     - skelly
