@@ -4,7 +4,7 @@ internal_domain_name: moh.gov.et
 #old_s3_blob_db_url: "http://172.19.4.46"
 #old_s3_blob_db_s3_bucket: 'echis'
 #old_s3_bulk_delete_chunksize: '200'
-
+LimitNOFILE: 5265535
 s3_blob_db_enabled: yes
 s3_blob_db_url: "http://172.19.4.37"
 s3_blob_db_s3_bucket: 'echis'
