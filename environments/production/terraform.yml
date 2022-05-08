@@ -13,7 +13,7 @@ vpc_begin_range: "10.202"
 
 openvpn_image: ami-5e73b923
 
-ec2_metadata_tokens_required: no
+ec2_metadata_tokens_required: yes
 servers:
   - server_name: "control2-production"
     server_instance_type: "t3a.large"
@@ -263,7 +263,7 @@ servers:
     volume_size: 400
     group: "formplayer"
     os: ubuntu_pro_bionic
-    count: 23
+    count: 21
     server_auto_recovery: true
 
   - server_name: "kafka1-production"
@@ -556,7 +556,7 @@ elasticache:
 
 elasticache_cluster:
   create: yes
-  cache_node_type: "cache.r5.2xlarge"
+  cache_node_type: "cache.r5.4xlarge"
   cache_engine_version: "4.0.10"
   cache_prameter_group: "default.redis4.0"
   automatic_failover: true
