@@ -59,9 +59,9 @@ celery_processes:
     reminder_rule_queue:
       concurrency: 5
     ucr_queue:
-      concurrency: 15
-    ucr_indicator_queue:
       concurrency: 5
+    ucr_indicator_queue:
+      concurrency: 15
     sms_queue:
       pooling: gevent
       concurrency: 1
@@ -73,6 +73,8 @@ celery_processes:
     logistics_reminder_queue:
       concurrency: 2
   echis_server5:
+    ucr_indicator_queue:
+      concurrency: 15
     saved_exports_queue:
       concurrency: 15
     export_download_queue:
