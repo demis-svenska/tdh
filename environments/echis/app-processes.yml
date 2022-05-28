@@ -59,7 +59,7 @@ celery_processes:
     reminder_rule_queue:
       concurrency: 5
     ucr_queue:
-      concurrency: 5
+      concurrency: 15
     ucr_indicator_queue:
       concurrency: 15
     sms_queue:
@@ -78,7 +78,7 @@ celery_processes:
     saved_exports_queue:
       concurrency: 15
     export_download_queue:
-      concurrency: 15
+      concurrency: 25
 pillows:
   echis_server5:
     CacheInvalidatePillow:
