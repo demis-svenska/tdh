@@ -38,8 +38,7 @@
       become: yes
       block:
         - apt: name=libpq-dev state=latest
-          #- pip: name=psycopg2
-        - pip: name=psycopg2-binary
+        - pip: name=psycopg2
     - name: Remote PostgreSQL
       include_role:
         name: postgresql_base
