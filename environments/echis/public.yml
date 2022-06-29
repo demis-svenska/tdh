@@ -20,8 +20,8 @@ s3_blob_db_url: "http://172.19.4.37"
 s3_blob_db_s3_bucket: 'echis'
 s3_bulk_delete_chunksize: '200'
 
-DATADOG_ENABLED: True
-DATADOG_INTEGRATIONS_ENABLED: True
+DATADOG_ENABLED: False
+DATADOG_INTEGRATIONS_ENABLED: False
 
 elasticsearch_memory: '5120m'
 elasticsearch_endpoint: '{{ groups.elasticsearch.0 }}'
