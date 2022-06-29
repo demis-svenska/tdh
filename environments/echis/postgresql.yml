@@ -20,7 +20,7 @@ dbs:
   main:
     host: echis_server1
   ucr:
-    host: echis_server3
+    host: echis_server28
   formplayer:
     host: echis_server1
   synclogs:
