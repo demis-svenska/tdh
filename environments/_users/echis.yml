@@ -2,7 +2,7 @@ dev_users:
   present:
     - administrator
     - dmac
-    - ansible
+      #- ansible
     - dpc
   absent:
     - echis_melese
