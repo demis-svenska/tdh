@@ -16,7 +16,7 @@ zookeeper_cluster: True
 
 rabbitmq_version: 3.8.5-1
 AMQP_HOST: 172.19.3.34
-OLD_AMQP_HOST: 172.19.4.33
+#OLD_AMQP_HOST: 172.19.4.33
 
 s3_blob_db_enabled: yes
 s3_blob_db_url: "http://172.19.4.37"
