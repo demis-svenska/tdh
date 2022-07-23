@@ -14,6 +14,9 @@ zookeeper_version: 3.4.9
 zookeeper_download_sha1: sha1:0285717bf5ea87a7a36936bf37851d214a32bb99
 zookeeper_cluster: True
 
+rabbitmq_version: 3.8.5-1
+AMQP_HOST: 172.19.3.34
+OLD_AMQP_HOST: 172.19.4.33
 
 s3_blob_db_enabled: yes
 s3_blob_db_url: "http://172.19.4.37"
