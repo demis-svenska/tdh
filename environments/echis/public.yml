@@ -109,6 +109,12 @@ localsettings:
     - 172.19.4.62
     - 172.19.4.63
     - 172.19.3.31
+    - 172.19.3.32
+    - 172.19.3.33
+    - 172.19.3.34
+    - 172.19.3.35
+    - 172.19.3.36
+    - 172.19.3.37
 
   SENTRY_ORGANIZATION_SLUG: 'org slug'
   SENTRY_PROJECT_SLUG: 'project slug'
