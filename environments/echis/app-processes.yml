@@ -28,7 +28,9 @@ celery_processes:
       concurrency: 5
     sumologic_logs_queue:
       pooling: gevent
-      concurrency: 5    
+      concurrency: 5
+    malt_generation_queue:
+      concurrency: 2
     linked_domain_queue:
       concurrency: 3
     email_queue:
