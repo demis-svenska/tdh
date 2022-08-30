@@ -1,9 +1,13 @@
 dev_users:
   present:
-    - ctsims
+    - administrator
+    - dmac
+    - ansible
+    - dpc
+  absent:
+    - echis_melese
     - skelly
     - sravfeyn
-    - administrator
     - echis_andy
     - echis_anteneh
     - echis_geanaruki
@@ -11,5 +15,3 @@ dev_users:
     - echis_robel
     - echis_siraj
     - echis_demisew
-  absent:
-    - echis_melese

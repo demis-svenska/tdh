@@ -1,6 +1,5 @@
----
 # roles/postgresql/tasks/main.yml
-
+#
 - name: Add PosgreSQL apt repo
   apt_repository: repo='{{ postgresql_apt_repo }}' state=present
   register: add_postgresql_repo
@@ -26,7 +25,7 @@
       - "postgresql-server-dev-{{ postgresql_version }}"
       - python-docutils  # required for building pghashlib
       - libpq-dev
-      - python-psycopg2
+      - python3-psycopg2
       - unzip
 
 - name: Install PostgreSQL & dependencies (bionic)

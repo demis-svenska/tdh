@@ -55,6 +55,7 @@
   apt:
     name:
       - build-essential
+        #- python3-psycopg2
       - python-psycopg2
       - postgresql-client-common
       - postgresql-client-{{ postgresql_version }}
