@@ -25,7 +25,6 @@ s3_blob_db_s3_bucket: 'echis'
 s3_bulk_delete_chunksize: '200'
 
 DATADOG_ENABLED: False
-DATADOG_INTEGRATIONS_ENABLED: False
 
 elasticsearch_memory: '5120m'
 elasticsearch_endpoint: '{{ groups.elasticsearch.0 }}'
