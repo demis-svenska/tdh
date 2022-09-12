@@ -1,10 +1,6 @@
 #!/bin/bash
-echo "============================================================="
-echo "=================checking error on HP server disks==========="
-echo "============================================================="
-cchq echis run-shell-command hp_server --become "sudo tune2fs -l /dev/sda2 | grep Last\ error"
 echo "=============================================="
-echo "=================checking error on XVDA2 error================"
+echo "=================checking error on XVDA2(OS Disk) error================"
 echo "=============================================================="
 cchq echis run-shell-command xenserver_withAllDisk --become "sudo tune2fs -l /dev/xvda2 | grep Last\ error"
 echo "=============================================="
