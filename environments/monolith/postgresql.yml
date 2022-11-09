@@ -1,0 +1,63 @@
+pgbouncer_override:
+  pgbouncer_default_pool: 90
+  pgbouncer_max_connections: 200
+  pgbouncer_pool_mode: transaction
+  pgbouncer_pool_timeout: 1
+  pgbouncer_reserve_pool: 5
+
+
+
+postgres_override:
+  postgresql_version: '10'
+  postgresql_port: 5432
+  postgresql_max_connections: 300
+  postgresql_work_mem: '32MB'
+  postgresql_shared_buffers: '10GB'
+  postgresql_checkpoint_completion_target: '0.7'
+  postgresql_wal_buffers: '32MB'
+  postgresql_default_statistics_target: '100'
+  postgresql_hba_entries:
+    - contype: host
+      databases: replication
+      users: hqrepl
+      netmask: 0.0.0.0/0
+  # https://www.postgresql.org/docs/9.6/runtime-config-connection.html
+  #postgresql_max_connections: 100
+  # https://www.postgresql.org/docs/9.6/runtime-config-resource.html
+  #postgresql_max_stack_depth: 4MB
+  #postgresql_shared_buffers: 4096MB
+  #postgresql_work_mem: 2457kB
+  #postgresql_maintenance_work_mem: 960MB
+  # https://www.postgresql.org/docs/9.6/runtime-config-query.html
+  #postgresql_effective_cache_size: 3GB
+  # postgresql_version: '9.6'
+
+dbs:
+  main:
+    host: pgmain0
+    pgbouncer_host: pgwarehouse0
+
+  formplayer:
+    host: pgmain0
+    pgbouncer_host: pgwarehouse0
+
+  ucr:
+    host: pgucr0  # or pgwarehouse
+    pgbouncer_host: pgwarehouse0
+
+  synclogs:
+    host: pgsynclogs0
+    pgbouncer_host: pgwarehouse0
+
+  form_processing:
+    proxy:
+      host: pgmain0
+
+    partitions:
+      p1:
+        shards: [0, 511]
+        host: pgshards0
+
+      p2:
+        shards: [512, 1023]
+        host: pgshards1
