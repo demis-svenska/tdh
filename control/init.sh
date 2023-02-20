@@ -2,6 +2,7 @@
 CCHQ_VIRTUALENV=${CCHQ_VIRTUALENV:-cchq}
 VENV=~/.virtualenvs/$CCHQ_VIRTUALENV
 NO_INPUT=0
+BIONIC_USE_SYSTEM_PYTHON=${BIONIC_USE_SYSTEM_PYTHON:-false}
 
 if [[ $_ == $0 ]]
 then
@@ -14,21 +15,6 @@ fi
 function realpath() {
     python -c "import os,sys; print(os.path.realpath(sys.argv[1]))" $1
 }
-
-
-if [ -z ${CI_TEST} ]; then
-    if [ ! -f $VENV/bin/activate ]; then
-        if [[ $CCHQ_VIRTUALENV == *3.10* ]]; then
-          # use venv because 3.10 setup includes installing python3.10-venv
-          python3.10 -m venv $VENV
-        else
-          # use virtualenv because `python3 -m venv` requires python3-venv
-          python3 -m pip install --user --upgrade virtualenv
-          python3 -m virtualenv $VENV
-        fi
-    fi
-    source $VENV/bin/activate
-fi
 
 if [ -n "${BASH_SOURCE[0]}" ] && [ -z "${BASH_SOURCE[0]##*init.sh*}" ]
 then
@@ -46,6 +32,38 @@ then
 else
     # use pre-assigned location if set; fallback to the default location
     COMMCARE_CLOUD_REPO=${COMMCARE_CLOUD_REPO:-${HOME}/commcare-cloud}
+fi
+
+if [ -z ${CI_TEST} ]; then
+    # attempt to activate
+    source "${COMMCARE_CLOUD_REPO}/control/activate_venv.sh"
+    if [ "$VIRTUALENV_NOT_FOUND" == "true" ]; then
+        # check if a virtualenv at $VENV exists yet, and create if not
+        if [[ ! -f $VENV/bin/activate ]]; then
+            if [[ $BIONIC_USE_SYSTEM_PYTHON == false ]] && hash python3.10 2>/dev/null; then
+                echo "Creating a python3.10 virtual environment named ${CCHQ_VIRTUALENV}"
+                if [ -n "$CCHQ_VENV_PATH_OLD" ]; then
+                    echo "Your old virtual environment will remain at ${CCHQ_VENV_PATH_OLD}"
+                    echo "If you wish to delete it, run 'rm -rf ${CCHQ_VENV_PATH_OLD}'"
+                fi
+                # use venv because 3.10 setup includes installing python3.10-venv
+                python3.10 -m venv "$VENV"
+            else
+                # use virtualenv because `python3 -m venv` requires python3-venv
+                python3 -m pip install --user --upgrade virtualenv
+                python3 -m virtualenv "$VENV"
+            fi
+        fi
+        source "$VENV/bin/activate"
+    fi
+fi
+
+# check for unsupported python version after virtual env is activated
+python_version=`python --version 2>&1 | awk '{print $2}'`
+if [[ $python_version = 3.6* ]]; then
+    echo "commcare-cloud no longer supports Python 3.6."
+    echo "To upgrade, follow the instructions in:"
+    echo "   https://commcare-cloud.readthedocs.io/en/latest/installation/2-manual-install.html#upgrade-to-python-3-10"
 fi
 
 if [ -d ~/commcarehq-ansible ]; then

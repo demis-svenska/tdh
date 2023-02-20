@@ -1,6 +1,6 @@
 .. _firefighting:
 
-This is a firefighting guide to help troubleshoot various issues that might come up while running a CommCareHQ Server.
+This is a firefighting guide to help troubleshoot various issues that might come up while running a CommCare HQ Server.
 
 .. note::
 
@@ -37,6 +37,16 @@ High-level System Monitoring and Alerts
 https://www.commcarehq.org/hq/admin/system/ - catchall system info, contains deploy history, pillowtop info, and a bunch of other stuff
 
 https://www.commcarehq.org/hq/admin/system/check_services - plaintext URL that checks the status of a bunch of support services
+
+
+Control machine log files
+===================
+There are two log files on the control machine that might be useful to reference if you need to know what commands were executed.
+These files are located in the `/var/log/` directory and are:
+
+- ansible.log: Shows the output of ansible commands.
+- commands.log: Shows the commands that were run and by which user.
+
 
 In case of a reboot
 ===================
