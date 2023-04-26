@@ -1,0 +1,171 @@
+[control0]
+10.177.22.30 ufw_private_interface=ens4
+
+[nginx0]
+10.177.22.5 hostname=cmcare-proxy.sante.gov.bf ufw_private_interface=ens4
+
+[pillowtop0]
+10.177.22.8 hostname=cmcare-pillowtop.sante.gov.bf ufw_private_interface=ens4
+
+[celery0]
+10.177.22.9 hostname=cmcare-celery.sante.gov.bf ufw_private_interface=ens4
+
+[redis0]
+10.177.22.10 hostname=cmcare-redis.sante.gov.bf ufw_private_interface=ens4
+
+[formplayer0]
+10.177.22.11 hostname=cmcare-formplayer.sante.gov.bf ufw_private_interface=ens4
+
+[kafka0]
+10.177.22.12 hostname=cmcare-kafka.sante.gov.bf ufw_private_interface=ens4 kafka_broker_id=0 zookeeper_server_id=1
+
+[django0]
+10.177.22.6 hostname=cmcare-django01.sante.gov.bf ufw_private_interface=ens4
+
+[django1]
+10.177.22.7 hostname=cmcare-django02.sante.gov.bf ufw_private_interface=ens4
+
+[rabbitmq0]
+10.177.22.13 hostname=cmcare-rabbitmq.sante.gov.bf ufw_private_interface=ens4
+
+[couchdb0]
+10.177.22.15 hostname=cmcare-couchdb01.sante.gov.bf ufw_private_interface=ens4
+
+[couchdb1]
+10.177.22.16 hostname=cmcare-couchdb02.sante.gov.bf ufw_private_interface=ens4
+
+[esdatanode0]
+10.177.22.18 hostname=cmcare-esdatanode01.sante.gov.bf elasticsearch_node_name=esdatanode0  ufw_private_interface=ens4
+
+[esdatanode1]
+10.177.22.19 hostname=cmcare-esdatanode02.sante.gov.bf elasticsearch_node_name=esdatanode1  ufw_private_interface=ens4
+
+
+[pgmain0]
+10.177.22.20 hostname=cmcare-pgmain.sante.gov.bf ufw_private_interface=ens4
+
+[pgshards0]
+10.177.22.22 hostname=cmcare-pgshards01.sante.gov.bf ufw_private_interface=ens4
+
+[pgshards1]
+10.177.22.23 hostname=cmcare-pgshards02.sante.gov.bf ufw_private_interface=ens4
+
+[pgucr0]
+10.177.22.25 hostname=cmcare-pgucr.sante.gov.bf ufw_private_interface=ens4
+
+[pgsynclogs0]
+10.177.22.24 hostname=cmcare-pgsynclogs.sante.gov.bf ufw_private_interface=ens4
+
+[pgwarehouse0]
+10.177.22.26 hostname=cmcare-pgwarehouse.sante.gov.bf ufw_private_interface=ens4
+
+[hqriakcs0]
+10.177.22.28 hostname=cmcare-riakcs01.sante.gov.bf ufw_private_interface=ens4
+
+[hqriakcs1]
+10.177.22.29 hostname=cmcare-riakcs02.sante.gov.bf ufw_private_interface=ens4
+
+
+[control:children]
+control0
+
+[proxy:children]
+nginx0
+
+[webworkers:children]
+django0
+django1
+
+
+[pgmain0:vars]
+datavol_device=/dev/vdc
+
+[pgshards0:vars]
+datavol_device=/dev/vdc
+
+[pgshards1:vars]
+datavol_device=/dev/vdc
+
+[pgucr0:vars]
+datavol_device=/dev/vdc
+
+[pgsynclogs0:vars]
+datavol_device=/dev/vdc
+
+[pgwarehouse0:vars]
+datavol_device=/dev/vdc
+
+[postgresql:children]
+pgmain0
+pgucr0
+pgsynclogs0
+pgwarehouse0
+pgshards0
+pgshards1
+
+[shared_dir_host:children]
+pgmain0
+
+
+[celery:children]
+celery0
+
+[celery:vars]
+swap_size=8G
+
+[pillowtop:children]
+pillowtop0
+
+[formplayer:children]
+formplayer0
+
+[django_manage:children]
+django0
+
+[couchdb2:children]
+couchdb0
+couchdb1
+
+[couchdb2_proxy:children]
+couchdb0
+
+[couchdb2_proxy:vars]
+swap_size=8G
+datavol_device=/dev/vdc
+
+[redis:children]
+redis0
+
+[zookeeper:children]
+kafka0
+
+[kafka:children]
+kafka0
+
+
+[es_master:children]
+esdatanode1
+
+[es_master:vars]
+elasticsearch_master=true
+elasticsearch_data=false
+
+[es_data:children]
+esdatanode0
+
+[elasticsearch:children]
+es_master
+es_data
+
+[rabbitmq:children]
+rabbitmq0
+
+[rabbitmq:vars]
+swap_size=2G
+
+[riakcs:children]
+hqriakcs0
+hqriakcs1
+
+[stanchion:children]
+hqriakcs1
