@@ -1,5 +1,0 @@
-deploy_env: monolith
-env_monitoring_id: monolith
-always_deploy_formplayer: true
-users:
-  - admins
